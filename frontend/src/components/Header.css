@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+header{
+    background-color:#F0E68C;
+    width: 100vw;
+}
+
+.container{
+    display: flex;
+    text-align: justify;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .logo{
+    font-family: 'Festive', cursive, 'Roboto', sans-serif;;
+    font-size: 50px;
+    color:#556B2F;
+}
+
+.container .link{
+    text-decoration: none;
+}
+
+.container button{
+    border: none;
+    border-bottom: solid;
+    border-radius: 0%;
+    text-decoration: none;
+    background-color: transparent;
+    color:#556B2F;
+}
+
+.container button{
+    margin-right: 30px;
+}

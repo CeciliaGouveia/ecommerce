@@ -1,0 +1,16 @@
+footer{
+    margin-top: 30px;
+    background-color:#F0E68C;
+    width: 100vw;
+}
+
+.endereco{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.endereco p{
+    color: #556B2F;
+    font-weight: bold;
+}
