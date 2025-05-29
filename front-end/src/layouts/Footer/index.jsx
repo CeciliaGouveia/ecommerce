@@ -67,14 +67,18 @@ const Right = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 `
 const ContactItem = styled.div`
   display: flex;
   align-items: center;
+  gap: 10px;
 `
 
-const Payment = styled.img``
+const Payment = styled.img`
+  width: 50%;
+  max-width: 220px;
+`
 
 const Footer = () => {
   return (
