@@ -1,5 +1,3 @@
-import React from "react"
-import styled from "@emotion/styled"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import XIcon from "@mui/icons-material/X"
@@ -7,78 +5,21 @@ import PinterestIcon from "@mui/icons-material/Pinterest"
 import PlaceIcon from "@mui/icons-material/Place"
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone"
 import EmailIcon from "@mui/icons-material/Email"
-
-const Container = styled.div`
-  display: flex;
-`
-const Left = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-`
-const Logo = styled.h2`
-  text-transform: uppercase;
-`
-const Description = styled.p``
-
-const SocialContainer = styled.div`
-  display: flex;
-  gap: 20px;
-`
-
-const SocialIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: white;
-  background-color: #${(props) => props.color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`
-
-const Center = styled.div`
-  flex: 1;
-  padding: 20px;
-`
-const Title = styled.h3`
-  margin-bottom: 25px;
-`
-
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-`
-
-const ListItem = styled.li`
-  width: 50%;
-  margin-bottom: 10px;
-  cursor: pointer;
-`
-
-const Right = styled.div`
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`
-const ContactItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`
-
-const Payment = styled.img`
-  width: 50%;
-  max-width: 220px;
-`
+import {
+  Container,
+  Left,
+  Logo,
+  Description,
+  SocialContainer,
+  SocialIcon,
+  Center,
+  Title,
+  List,
+  ListItem,
+  Right,
+  ContactItem,
+  Payment,
+} from "./styles"
 
 const Footer = () => {
   return (

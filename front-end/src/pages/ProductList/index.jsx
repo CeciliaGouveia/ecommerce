@@ -1,44 +1,24 @@
 import React from "react"
-import styled from "@emotion/styled"
 import Navbar from "../../components/Navbar"
 import Announcement from "../../components/Announcement"
 import Products from "../../layouts/Products"
 import Newsletter from "../../layouts/Newsletter"
 import Footer from "../../layouts/Footer"
-
-const Container = styled.div``
-
-const Title = styled.h1`
-  margin: 20px;
-`
-
-const FilterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
-const Filter = styled.div`
-  margin: 20px;
-`
-
-const FilterText = styled.span`
-  font-size: 20px;
-  font-weight: 600;
-  margin-right: 20px;
-`
-
-const Select = styled.select`
-  padding: 10px;
-  margin-right: 20px;
-`
-
-const Option = styled.option``
+import {
+  Container,
+  Title,
+  FilterContainer,
+  Filter,
+  FilterText,
+  Select,
+  Option,
+} from "./styles"
 
 const ProductList = () => {
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      <Navbar />
 
       <Title>Dresses</Title>
       <FilterContainer>
