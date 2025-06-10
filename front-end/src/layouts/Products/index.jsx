@@ -1,4 +1,3 @@
-import React from "react"
 import styled from "@emotion/styled"
 import { popularProducts } from "../../data"
 import Product from "../../components/Product"
@@ -20,4 +19,5 @@ const Products = () => {
     </Container>
   )
 }
+
 export default Products
