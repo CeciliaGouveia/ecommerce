@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.js"
 import productRoutes from "./routes/product.js"
 import cartRoutes from "./routes/cart.js"
 import authRoutes from "./routes/auth.js"
+import orderRoutes from "./routes/order.js"
 
 const app = express()
 
@@ -14,9 +15,11 @@ connectDB()
 
 app.use("/api/users", userRoutes)
 
-app.use("/", productRoutes)
+app.use("/api/products", productRoutes)
 
-app.use("/", cartRoutes)
+app.use("/api/carts", cartRoutes)
+
+app.use("/api/orders", orderRoutes)
 
 app.use("/api/auth", authRoutes)
 

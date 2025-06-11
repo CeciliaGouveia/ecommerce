@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken"
 const JWT_SECRET = process.env.JWT_SECRET
 
 export const verifyToken = (req, res, next) => {
-  const tokenJwt = req.headers.authorization
+  const tokenJwt = req.headers.authorization?.replace("Bearer ", "")
 
   if (tokenJwt) {
-    jwt.verify(tokenJwt.replace("Bearer ", ""), JWT_SECRET, (err, user) => {
+    jwt.verify(tokenJwt, JWT_SECRET, (err, user) => {
       // se retornar um erro, informa ao usuário
       if (err) return res.status(403).json("Token inválido")
       // se retornar uma resposta válida, guarda na requisição
@@ -26,6 +26,21 @@ export const verifyTokenAndAuthorization = (req, res, next) => {
     // req.params.id - é o id do usuário passado na URL
     // Se o id do usuário logado é o mesmo passado na URL, então permitiremos acesso à página
     if (req.user.id === req.params.id || req.user.isAdmin) {
+      next()
+    } else {
+      res
+        .status(403)
+        .json({ message: "Você não possui permissão para acessar essa página" })
+    }
+  })
+}
+
+export const verifyTokenAndAdmin = (req, res, next) => {
+  verifyToken(req, res, () => {
+    // req.user.id - é o id do usuário logado, que veio do token jwt da nossa função "verifyToken"
+    // req.params.id - é o id do usuário passado na URL
+    // Se o usuário logado for admin
+    if (req.user.isAdmin) {
       next()
     } else {
       res
