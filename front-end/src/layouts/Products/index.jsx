@@ -1,6 +1,7 @@
+import React from "react"
 import styled from "@emotion/styled"
-import { popularProducts } from "../../data"
 import Product from "../../components/Product"
+import { axiosPublic } from "../../api/axios"
 
 const Container = styled.div`
   padding: 20px;
@@ -10,12 +11,58 @@ const Container = styled.div`
   justify-content: space-between;
 `
 
-const Products = () => {
+const Products = ({ cat, filters, sort }) => {
+  const [products, setProducts] = React.useState([])
+  const [filteredProducts, setFilteredProducts] = React.useState([])
+
+  React.useEffect(() => {
+    const getProducts = async () => {
+      try {
+        // no endereço passado no get, passamos exatamente aquele da API
+        const res = await axiosPublic.get(
+          cat ? `/products?category=${cat}` : `/products/`
+        )
+        setProducts(res.data)
+      } catch (err) {
+        alert("Erro ao buscar dados na API", err)
+      }
+    }
+    getProducts()
+  }, [cat])
+
+  React.useEffect(() => {
+    cat &&
+      setFilteredProducts(
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) => {
+            return item[key].includes(value)
+          })
+        )
+      )
+  }, [products, cat, filters])
+
+  React.useEffect(() => {
+    if (sort === "newest") {
+      // Pedindo para que os produtos sejam organizados por ordem de publicação no site
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+      )
+    } else if (sort === "asc") {
+      setFilteredProducts((prev) => [...prev].sort((a, b) => a.price - b.price))
+    } else {
+      setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price))
+    }
+  }, [sort])
+
   return (
     <Container>
-      {popularProducts.map((product) => (
-        <Product product={product} key={product.id} />
-      ))}
+      {cat
+        ? filteredProducts.map((product) => (
+            <Product product={product} key={product.id} />
+          ))
+        : products
+            .slice(0, 7)
+            .map((product) => <Product product={product} key={product.id} />)}
     </Container>
   )
 }

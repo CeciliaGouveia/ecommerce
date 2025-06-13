@@ -44,6 +44,8 @@ export const Slide = styled.div`
 export const ImgContainer = styled.div`
   height: 100%;
   flex: 1;
+  display: flex;
+  justify-content: center;
 `
 
 export const Image = styled.img`

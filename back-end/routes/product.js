@@ -1,6 +1,7 @@
 import express from "express"
 import { verifyTokenAndAdmin } from "../middleware/auth.js"
 import Product from "../models/Product.js"
+import mongoose from "mongoose"
 
 const router = express.Router()
 
