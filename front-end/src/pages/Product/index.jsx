@@ -27,6 +27,8 @@ import {
 } from "./styles"
 import { useLocation } from "react-router-dom"
 import { axiosPublic } from "../../api/axios"
+import { addProduct } from "../../app/cartRedux"
+import { useDispatch } from "react-redux"
 
 const Product = () => {
   // O useLocation é um hook do React Router que serve para acessar informações sobre a URL atual da aplicação
@@ -38,6 +40,7 @@ const Product = () => {
   const [quantity, setQuantity] = React.useState(1)
   const [color, setColor] = React.useState("")
   const [size, setSize] = React.useState("")
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
     const getProducts = async () => {
@@ -57,9 +60,17 @@ const Product = () => {
       : setQuantity(quantity + 1)
   }
 
-  // function handleClick(event) {
-  //   // atualizar um cart
-  // }
+  function handleClick() {
+    // atualizar um cart
+    dispatch(
+      addProduct({
+        ...product,
+        quantity,
+        color: color || (product.color && product.color[0]),
+        size: size || (product.size && product.size[0].toUpperCase()),
+      })
+    )
+  }
 
   return (
     <Container>
@@ -84,7 +95,7 @@ const Product = () => {
                 ))}
             </Filter>
             <Filter>
-              <FilterTitle>Size</FilterTitle>
+              <FilterTitle selected>Size</FilterTitle>
               <FilterSize onChange={(event) => setSize(event.target.value)}>
                 {product.size &&
                   product.size.map((s) => (
