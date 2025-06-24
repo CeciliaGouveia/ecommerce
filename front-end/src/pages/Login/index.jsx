@@ -4,13 +4,13 @@ import { login } from "../../app/apiCalls"
 import { useDispatch } from "react-redux"
 
 const Login = () => {
-  const [username, setUsername] = React.useState("")
+  const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const dispatch = useDispatch()
 
   const handleClick = (event) => {
     event.preventDefault()
-    login(dispatch, { username, password })
+    login(dispatch, { email, password })
   }
 
   return (
@@ -20,10 +20,12 @@ const Login = () => {
         <Form>
           <Input
             placeholder="Email"
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             placeholder="Password"
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button onClick={handleClick}>login</Button>

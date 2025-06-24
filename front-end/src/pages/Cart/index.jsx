@@ -35,9 +35,38 @@ import {
   SummaryButton,
 } from "./styles.js"
 import { useSelector } from "react-redux"
+import StripeCheckout from "react-stripe-checkout"
+import { axiosPrivate } from "../../api/axios.js"
+import { useNavigate } from "react-router-dom"
+
+const STRIPE_PUBLIC_KEY = import.meta.env.VITE_STRIPE_PUBLIC_KEY
 
 const Cart = () => {
+  const navigate = useNavigate()
+
   const cart = useSelector((state) => state.cart)
+
+  const [stripeToken, setStripeToken] = React.useState(null)
+
+  const onToken = (token) => {
+    setStripeToken(token)
+  }
+
+  React.useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const response = await axiosPrivate.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100,
+        })
+        console.log(response)
+        navigate("/success", { state: { data: response.data } })
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    stripeToken && cart.total >= 1 && makeRequest()
+  }, [stripeToken, cart.total, navigate])
 
   console.log("Cart contents:", cart)
 
@@ -58,7 +87,7 @@ const Cart = () => {
         <Bottom>
           <Info>
             {cart.products.map((product) => (
-              <Product key={product._id}>
+              <Product>
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
@@ -106,7 +135,19 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <SummaryButton>CHECKOUT NOW</SummaryButton>
+
+            <StripeCheckout
+              name="CS Clothes"
+              image="https://avataaars.io/?avatarStyle=Circle&topType=LongHairCurvy&accessoriesType=Kurt&hairColor=BlondeGolden&facialHairType=Blank&clotheType=CollarSweater&clotheColor=Red&eyeType=Default&eyebrowType=Default&mouthType=Twinkle&skinColor=Light"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              stripeKey={STRIPE_PUBLIC_KEY}
+            >
+              <SummaryButton>Pay Now</SummaryButton>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
