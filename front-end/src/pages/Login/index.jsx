@@ -1,12 +1,22 @@
 import React from "react"
-import { Container, Wrapper, Title, Form, Input, Button, Link } from "./styles"
+import {
+  Container,
+  Wrapper,
+  Title,
+  Form,
+  Input,
+  Button,
+  Link,
+  Error,
+} from "./styles"
 import { login } from "../../app/apiCalls"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const Login = () => {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const dispatch = useDispatch()
+  const { isFetching, error } = useSelector((state) => state.user)
 
   const handleClick = (event) => {
     event.preventDefault()
@@ -28,7 +38,10 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick}>login</Button>
+          <Button onClick={handleClick} disabled={isFetching}>
+            login
+          </Button>
+          {error && <Error>Something went wrong ...</Error>}
           <Link>do not you remenber the password?</Link>
           <Link>create a new account</Link>
         </Form>

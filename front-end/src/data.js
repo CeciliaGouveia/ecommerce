@@ -1,21 +1,21 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "../src/img/dress-floral-bg.jpg",
+    img: "../src/assets/img/dress-floral-bg.jpg",
     title: "SUMMER SALE",
     desc: "DON'T COMPROMISSE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
     bg: "f5fafd",
   },
   {
     id: 2,
-    img: "../src/img/clothe-autumn.png",
+    img: "../src/assets/img/clothe-autumn.png",
     title: "AUTUMN COLLECTION",
     desc: "DON'T COMPROMISSE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
     bg: "fcf1ed",
   },
   {
     id: 3,
-    img: "../src/img/dress-winter.png",
+    img: "../src/assets/img/dress-winter.png",
     title: "WINTER SALE",
     desc: "DON'T COMPROMISSE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
     bg: "fbf0f4",
