@@ -4,6 +4,7 @@ import "./App.css"
 import Home from "./pages/Home"
 import UserList from "./pages/userList"
 import User from "./pages/User"
+import NewUser from "./pages/NewUser"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />
+          <Route path="/newUser" element={<NewUser />} />
         </Routes>
       </div>
     </BrowserRouter>
