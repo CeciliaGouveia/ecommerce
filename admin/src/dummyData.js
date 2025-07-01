@@ -141,3 +141,101 @@ export const userRows = [
     transaction: "$120",
   },
 ]
+
+export const productData = [
+  {
+    name: "Jan",
+    Sales: 4000,
+  },
+  {
+    name: "Feb",
+    Sales: 3000,
+  },
+  {
+    name: "Mar",
+    Sales: 5000,
+  },
+]
+
+export const productRows = [
+  {
+    id: 1,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 2,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 3,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 4,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 5,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 6,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 7,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 8,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 9,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+  {
+    id: 10,
+    name: "Apple Airpods",
+    img: "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    stock: 123,
+    status: "active",
+    price: "$120",
+  },
+]

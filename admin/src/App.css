@@ -2,3 +2,9 @@
   display: flex;
   margin-top: 10px;
 }
+
+.link {
+  text-decoration: none;
+  /* inherit - significa que a cor será pega do elemento-pai */
+  color: inherit;
+}
