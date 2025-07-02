@@ -1,5 +1,6 @@
 import "dotenv/config"
 import express from "express"
+import cookieParser from "cookie-parser"
 import cors from "cors"
 import connectDB from "./config/db.js"
 import userRoutes from "./routes/user.js"
@@ -11,9 +12,18 @@ import stripeRoute from "./routes/stripe.js"
 
 const app = express()
 
-app.use(cors())
+app.use(
+  cors({
+    // front-end
+    origin: "http://localhost:5173",
+    // disciplinando que aceita credenciais para utialização do cookie htmlOnly
+    credentials: true,
+  })
+)
 
 app.use(express.json())
+
+app.use(cookieParser())
 
 connectDB()
 

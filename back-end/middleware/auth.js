@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken"
 const JWT_SECRET = process.env.JWT_SECRET
 
 export const verifyToken = (req, res, next) => {
-  const tokenJwt = req.headers.authorization?.replace("Bearer ", "")
+  const tokenJwt =
+    req.cookies.token || req.headers.authorization?.replace("Bearer ", "")
 
   if (tokenJwt) {
     jwt.verify(tokenJwt, JWT_SECRET, (err, user) => {

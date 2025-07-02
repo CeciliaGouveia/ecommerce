@@ -32,6 +32,7 @@ router.post("/register", async (req, res) => {
     // salvando os dados do objeto no banco de dados
     const savedUser = await newUser.save()
 
+    // remove a senha da resposta
     const { password, ...others } = savedUser._doc
 
     res.status(201).json(others)
@@ -81,7 +82,16 @@ router.post("/login", async (req, res) => {
     // Vamos omitir a senha, da resposta qeu formos dar para o usuário
     const { password, ...others } = userDataBase._doc
 
-    res.status(200).json({ ...others, token })
+    // retornando o cookie para utialização do cookie htmlOnly
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // só HTTPS em produção
+        sameSite: "Strict", // ou "Lax"
+        maxAge: 2 * 24 * 60 * 60 * 1000, // 2 dias
+      })
+      .status(200)
+      .json({ ...others })
   } catch (err) {
     res.status(500).json({ message: "Erro no Servidor" })
   }
