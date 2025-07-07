@@ -1,11 +1,59 @@
 import React from "react"
 import "./styles.css"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Chart from "../../components/Chart"
-import { productData } from "../../dummyData"
 import PublishIcon from "@mui/icons-material/Publish"
+import { useSelector } from "react-redux"
+import { axiosPrivate } from "../../api/axios.js"
 
 const Product = () => {
+  const location = useLocation()
+  const productId = location.pathname.split("/")[2]
+  const [pStats, setPStats] = React.useState([])
+
+  const product = useSelector((state) =>
+    // dentro da nossa matriz de produtos, vamos tentar encontrar nosso produto utilizando o ID dele
+    state.product.products.find((product) => product._id === productId)
+  )
+
+  const MONTHS = React.useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  )
+
+  React.useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await axiosPrivate.get("/orders/income?pid=" + productId)
+        const list = res.data.sort((a, b) => {
+          return a._id - b._id
+        })
+        list.map((item) =>
+          setPStats((prev) => [
+            ...prev,
+            { name: MONTHS[item._id - 1], Sales: item.total },
+          ])
+        )
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getStats()
+  }, [MONTHS, productId])
+
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -16,37 +64,32 @@ const Product = () => {
       </div>
       <div className="productTop">
         <div className="productTopLeft">
-          <Chart data={productData} dataKey="Sales" title="Sales Performance" />
+          <Chart data={pStats} dataKey="Sales" title="Sales Performance" />
         </div>
         <div className="productTopRight">
           <div className="productInfoTop">
-            <img
-              src="https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
-              className="productInfoImg"
-            />
-            <span className="productName">Apple Airpods</span>
+            <img src={product.img} alt="" className="productInfoImg" />
+            <span className="productName">{product.title}</span>
           </div>
           <div className="productInfoBottom">
             <div className="productInfoItem">
-              <span className="productInfoKey">id:</span>
-              <span className="productInfoValue">123</span>
+              <span className="productInfoKey">ID:</span>
+              <span className="productInfoValue">{product._id}</span>
             </div>
             <div className="productInfoItem">
-              <span className="productInfoKey">price</span>
-              <span className="productInfoValue">$120</span>
+              <span className="productInfoKey">Price</span>
+              <span className="productInfoValue">${product.price}</span>
             </div>
             <div className="productInfoItem">
-              <span className="productInfoKey">sales:</span>
+              <span className="productInfoKey">Sales:</span>
               <span className="productInfoValue">5123</span>
             </div>
+
             <div className="productInfoItem">
-              <span className="productInfoKey">active:</span>
-              <span className="productInfoValue">yes</span>
-            </div>
-            <div className="productInfoItem">
-              <span className="productInfoKey">in stock:</span>
-              <span className="productInfoValue">no</span>
+              <span className="productInfoKey">In Stock:</span>
+              <span className="productInfoValue">
+                {product.inStock === true ? "Yes" : "No"}
+              </span>
             </div>
           </div>
         </div>
@@ -55,28 +98,21 @@ const Product = () => {
         <form className="productForm">
           <div className="productFormLeft">
             <label htmlFor="">Product Name</label>
-            <input type="text" placeholder="Apple Airpods" />
+            <input type="text" placeholder={product.title} />
+            <label htmlFor="">Product Description</label>
+            <input type="text" placeholder={product.desc} />
             <label htmlFor="">Price</label>
-            <input type="number" placeholder="$" />
+            <input type="number" placeholder={product.price} />
             <label htmlFor="inStock">In Stock</label>
             <select name="inStock" id="inStock">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-            <label htmlFor="active">Active</label>
-            <select name="active" id="active">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
             </select>
           </div>
           <div className="productFormRight">
             <div className="productUpload">
-              <img
-                src="https://images.unsplash.com/photo-1606741965509-717b9fdd6549?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt=""
-                className="productUploadImg"
-              />
-              <label for="file">
+              <img src={product.img} alt="" className="productUploadImg" />
+              <label htmlFor="file">
                 <PublishIcon />
               </label>
               <input type="file" id="file" style={{ display: "none" }} />

@@ -2,15 +2,18 @@ import React from "react"
 import "./styles.css"
 import { login } from "../../app/apiCalls.js"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleClick = async (event) => {
     event.preventDefault()
     login(dispatch, { email, password })
+    navigate("/")
   }
 
   return (

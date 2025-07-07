@@ -16,6 +16,7 @@ import {
 } from "./styles"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import "./styles.css"
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity)
@@ -31,7 +32,9 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>C's clothes</Logo>
+          <Link to="/" className="link">
+            <Logo>C's clothes</Logo>
+          </Link>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>

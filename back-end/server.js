@@ -15,7 +15,7 @@ const app = express()
 app.use(
   cors({
     // front-end
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:5174"],
     // disciplinando que aceita credenciais para utialização do cookie htmlOnly
     credentials: true,
   })

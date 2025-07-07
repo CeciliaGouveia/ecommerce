@@ -28,17 +28,23 @@
   gap: 10px;
 }
 
-.productForm > label {
+.addProductItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.addProductItem > label,
+legend {
   color: gray;
   font-weight: 600;
 }
 
-.productForm > input {
+.addProductItem > input {
   border: 1px solid gray;
   padding: 10px;
 }
 
-.productForm > select {
+.addProductItem > select {
   padding: 10px;
   border: 1px solid gray;
 }
@@ -68,6 +74,14 @@
   object-fit: cover;
 }
 
+.sizeOption {
+  display: flex;
+  gap: 10px;
+}
+
+.sizeOption > label {
+  color: gray;
+}
 .productButton {
   margin-top: 10px;
   border: none;

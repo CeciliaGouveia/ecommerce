@@ -31,7 +31,7 @@ const Products = ({ cat, filters, sort }) => {
   }, [cat])
 
   React.useEffect(() => {
-    cat &&
+    products &&
       setFilteredProducts(
         products.filter((item) =>
           Object.entries(filters).every(([key, value]) => {
@@ -39,7 +39,7 @@ const Products = ({ cat, filters, sort }) => {
           })
         )
       )
-  }, [products, cat, filters])
+  }, [products, filters])
 
   React.useEffect(() => {
     if (sort === "newest") {
@@ -56,13 +56,13 @@ const Products = ({ cat, filters, sort }) => {
 
   return (
     <Container>
-      {cat
+      {products
         ? filteredProducts.map((product) => (
-            <Product product={product} key={product.id} />
+            <Product product={product} key={product._id} />
           ))
         : products
             .slice(0, 7)
-            .map((product) => <Product product={product} key={product.id} />)}
+            .map((product) => <Product product={product} key={product._id} />)}
     </Container>
   )
 }

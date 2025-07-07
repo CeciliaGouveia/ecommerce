@@ -35,7 +35,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     )
     res.status(200).json(updatedUser)
   } catch (err) {
-    res.status(500).json({ message: "Erro no Servidorm , na Rota Put" })
+    res.status(500).json({ message: "Erro no Servidor , na Rota Put" })
   }
 })
 
@@ -94,6 +94,21 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     res
       .status(500)
       .json({ message: "Erro no Servidor, na Rota Get User Stats" })
+  }
+})
+
+// Retorna o usuário e verifica se ele é Admin
+// Get current user profile (isAdmin, id, etc)
+router.get("/admin", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+    if (!user)
+      return res.status(404).json({ message: "Usuário não encontrado" })
+
+    const { password, ...others } = user._doc
+    res.status(200).json(others) // inclui isAdmin
+  } catch (err) {
+    res.status(500).json({ message: "Erro no Servidor, na Rota /profile" })
   }
 })
 

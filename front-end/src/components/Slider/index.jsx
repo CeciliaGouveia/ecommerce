@@ -14,6 +14,7 @@ import {
   Description,
   Button,
 } from "./styles"
+import { Link } from "react-router-dom"
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = React.useState(0)
@@ -44,7 +45,9 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Description>{item.desc}</Description>
-              <Button>SHOW NOW</Button>
+              <Link to="/products">
+                <Button>SHOW NOW</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}
