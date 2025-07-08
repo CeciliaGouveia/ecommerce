@@ -19,7 +19,7 @@ const ProductList = () => {
   // O useLocation é um hook do React Router que serve para acessar informações sobre a URL atual da aplicação
   // Pegando as cateogiras selecionadas
   const location = useLocation()
-  const cat = location.pathname.split("/")[2]
+  const cat = location.pathname.split("/")[2] || null
 
   // Filtrando as categorias selecionadas
   const [filters, setFilters] = React.useState({})
@@ -37,7 +37,7 @@ const ProductList = () => {
       <Announcement />
       <Navbar />
 
-      <Title>{cat.toUpperCase()}</Title>
+      <Title>{cat?.toUpperCase() || "ALL PRODUCTS"}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>

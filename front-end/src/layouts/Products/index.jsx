@@ -11,7 +11,7 @@ const Container = styled.div`
   justify-content: space-between;
 `
 
-const Products = ({ cat, filters, sort }) => {
+const Products = ({ cat = null, filters, sort }) => {
   const [products, setProducts] = React.useState([])
   const [filteredProducts, setFilteredProducts] = React.useState([])
 
@@ -31,14 +31,16 @@ const Products = ({ cat, filters, sort }) => {
   }, [cat])
 
   React.useEffect(() => {
-    products &&
-      setFilteredProducts(
-        products.filter((item) =>
-          Object.entries(filters).every(([key, value]) => {
-            return item[key].includes(value)
-          })
+    if (Object.keys(filters || {}).length > 0) {
+      const filtered = products.filter((item) =>
+        Object.entries(filters).every(([key, value]) =>
+          item[key]?.toLowerCase().includes(value.toLowerCase())
         )
       )
+      setFilteredProducts(filtered)
+    } else {
+      setFilteredProducts(products)
+    }
   }, [products, filters])
 
   React.useEffect(() => {
